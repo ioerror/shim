@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <syslog.h>
+#include <stdarg.h>
 #include "log.h"
 #include "util.h"
 
-static enum log_level min_log_level = LOG_NOTICE;
+static int min_log_level = LOG_NOTICE;
 static FILE *log_file = NULL;
 static int log_do_scrub = 1;
+
+extern int debug;	/* from main.c */
 
 void
 log_debug(const char *msg, ...)
@@ -43,7 +47,7 @@ log_warn(const char *msg, ...)
 	va_list ap;
 
 	va_start(ap, msg);
-	log_msg_va(LOG_WARN, 0, msg, ap);
+	log_msg_va(LOG_WARNING, 0, msg, ap);
 	va_end(ap);
 }
 
@@ -53,7 +57,7 @@ log_error(const char *msg, ...)
 	va_list ap;
 
 	va_start(ap, msg);
-	log_msg_va(LOG_ERROR, 0, msg, ap);
+	log_msg_va(LOG_ERR, 0, msg, ap);
 	va_end(ap);
 }
 
@@ -63,7 +67,7 @@ log_socket_error(const char *msg, ...)
 	va_list ap;
 
 	va_start(ap, msg);
-	log_msg_va(LOG_ERROR, 1, msg, ap);
+	log_msg_va(LOG_ERR, 1, msg, ap);
 	va_end(ap);
 }
 
@@ -73,31 +77,35 @@ log_fatal(const char *msg, ...)
 	va_list ap;
 
 	va_start(ap, msg);
-	log_msg_va(LOG_FATAL, 0, msg, ap);
+	log_msg_va(LOG_CRIT, 0, msg, ap);
 	va_end(ap);
 }
 
 void
-log_msg_va(enum log_level lvl, int serr, const char *msg, va_list ap)
+log_msg_va(int lvl, int serr, const char *msg, va_list ap)
 {
-	if (lvl >= min_log_level) {
-		vfprintf(log_file, msg, ap);
-		if (serr)
-			fprintf(log_file, ": %s", socket_error_string(-1));
-		fputs("\n", log_file);
-		fflush(log_file);
-		if (lvl >= LOG_FATAL)
-			abort();
-	}
+	if (debug) {
+		if (lvl >= min_log_level) {
+			vfprintf(log_file, msg, ap);
+			if (serr)
+				fprintf(log_file, ": %s",
+				    socket_error_string(-1));
+			fputs("\n", log_file);
+			fflush(log_file);
+			if (lvl <= LOG_CRIT)
+				abort();
+		}
+	} else
+		vsyslog(lvl, msg, ap);
 }
 
 void
-log_set_min_level(enum log_level lvl)
+log_set_min_level(int lvl)
 {
 	min_log_level = lvl;
 }
 
-enum log_level
+int
 log_get_min_level(void)
 {
 	return min_log_level;

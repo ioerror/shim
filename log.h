@@ -4,15 +4,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-enum log_level {
-	LOG_DEBUG,
-	LOG_INFO,
-	LOG_NOTICE,
-	LOG_WARN,
-	LOG_ERROR,
-	LOG_FATAL
-};
-
 #ifdef __GNUC__
 #define CHECK_FMT(a,b) __attribute__((format(printf, a, b)))
 #else
@@ -27,13 +18,13 @@ void log_error(const char *msg, ...) CHECK_FMT(1,2);
 void log_socket_error(const char *msg, ...) CHECK_FMT(1,2);
 void log_fatal(const char *msg, ...) CHECK_FMT(1,2);
 
-void log_msg_va(enum log_level lvl, int serr, const char *msg, va_list ap);
+void log_msg_va(int lvl, int serr, const char *msg, va_list ap);
 
-void log_set_min_level(enum log_level lvl);
-enum log_level log_get_min_level(void);
-void log_set_file(FILE *fp);
-void log_set_scrub(int scrub);
+void log_set_min_level(int);
+int log_get_min_level(void);
+void log_set_file(FILE *);
+void log_set_scrub(int);
 int log_get_scrub(void);
-const char *log_scrub(const char *what);
+const char *log_scrub(const char *);
 
 #endif
