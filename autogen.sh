@@ -1,11 +1,17 @@
 #!/bin/sh
-
-#Hi, this is copied from Tor.
+#
+# This generates our configure scripts and leads us onto the path of 
+# the great Makefile...
+#
 
 set -e
 
-# Run this to generate all the initial makefiles, etc.
-aclocal && \
-	autoheader && \
-	autoconf && \
-	automake --add-missing --copy
+if [ ! -d config ];
+then
+  mkdir config;
+fi
+
+WARNINGS="all,error"
+export WARNINGS
+
+autoreconf --install --verbose --force

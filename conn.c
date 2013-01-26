@@ -1,3 +1,4 @@
+#include "config.h"
 #include "netheaders.h"
 
 #include <assert.h>
@@ -10,7 +11,6 @@
 #include <event2/util.h>
 #include <event2/dns.h>
 
-#include "config.h"
 #include "conn.h"
 #include "util.h"
 #include "log.h"

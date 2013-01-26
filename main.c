@@ -1,3 +1,4 @@
+#include "config.h"
 #include "netheaders.h"
 
 #include <stdio.h>
@@ -14,7 +15,6 @@
 #include <event2/dns.h>
 #include <event2/util.h>
 
-#include "config.h"
 #include "proxy.h"
 #include "conn.h"
 #include "log.h"
