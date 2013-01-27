@@ -1,4 +1,3 @@
-#include "config.h"
 #include "netheaders.h"
 
 #include <assert.h>
