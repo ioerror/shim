@@ -52,7 +52,7 @@ shim [-l host] [-p port] [-qdVv] [socks proxy]
 	Decrease verbosity. You can specify this option more than once.
 
 -d
-	Daemonize.
+	Do not daemonize.
 -v
 	Increase verbosity. You can specify this option more than once.
 

@@ -1,0 +1,33 @@
+#
+#    AppArmor shim profile for Ubuntu 11.04 and later
+#
+
+#include <tunables/global>
+/usr/bin/shim {
+  #include <abstractions/consoles>
+
+  # IPv4 TCP
+  network inet stream,
+  # IPv4 UDP for DNS resolution
+  network inet dgram,
+  # IPv6 TCP
+  network inet6 stream,
+  # IPv6 UDP
+  network inet6 dgram,
+
+  /etc/hosts r,
+
+  # Allow reading of libs and /tmp
+  /etc/ld.so.cache r,
+
+  # Random number generation requires these two
+  /dev/random r,
+  /dev/urandom r,
+
+  # Allow mapping of shared libraries
+  /lib/* rm,
+  /lib32/* rm,
+  /lib64/* rm,
+  /usr/lib/* rm,
+  /lib/x86_64-linux-gnu/* rm,
+}
