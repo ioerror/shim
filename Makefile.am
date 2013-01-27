@@ -16,7 +16,8 @@ ACLOCAL_AMFLAGS= -I m4
 EXTRA_DIST+= README
 EXTRA_DIST+= TODO
 EXTRA_DIST+= ChangeLog
-EXTRA_DIST+= autogen.sh 
+EXTRA_DIST+= autogen.sh
+EXTRA_DIST+= apparmor-profile
 
 include src/include.am
 
