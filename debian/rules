@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# See: http://wiki.debian.org/Hardening#hardening-wrapper
+export DEB_BUILD_HARDENING=1
+
+%:
+	dh $@
+
+override_dh_install:
+	dh_install
+	
+	cp apparmor-profile debian/shim/etc/apparmor.d/usr.bin.shim
+	dh_apparmor --profile-name=usr.bin.shim -pshim
