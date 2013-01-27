@@ -8,4 +8,4 @@ src_shim_CFLAGS = -I$(srcdir)/compat $(LIBEVENT_CFLAGS)
 src_shim_LDADD = $(LIBEVENT_LIBS)
 
 noinst_HEADERS += src/conn.h src/headers.h src/httpconn.h src/log.h src/proxy.h \
-                 src/util.h src/netheaders.h compat/sys/queue.h
+                 src/util.h src/netheaders.h src/compat/sys/queue.h
