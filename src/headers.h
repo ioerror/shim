@@ -2,6 +2,7 @@
 #define _HEADERS_H_
 
 #include <sys/queue.h>
+#include <stddef.h>
 
 /* Use a list of strings to preserve any folding. */ 
 struct val_line {
