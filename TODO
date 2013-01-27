@@ -1,3 +1,6 @@
+- Add AppArmor rule
+- Add priv dropping
+- Add init.d script
 - Add unit tests
 - Doxygenify code
 - Handle range requests better?
