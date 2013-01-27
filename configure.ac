@@ -27,10 +27,10 @@ if test "$GCC" = yes; then
 fi
 
 AC_ARG_ENABLE(direct-connections,
-	AS_HELP_STRING(--disable-direct-connections,
+	AS_HELP_STRING(--enable-direct-connections,
 		       only make connections through a SOCKS proxy),
 	[],
-	[enable_direct_connections=yes])
+	[enable_direct_connections=no])
 
 PKG_CHECK_MODULES(LIBEVENT, libevent >= 2.0.0)
 AC_SUBST(LIBEVENT_CFLAGS)

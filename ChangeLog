@@ -1,5 +1,9 @@
 Changes in 0.1.1 - 2013-01-XX
   * Add compiler hardening flags
   * Add '-d' daemon flag (Thanks to David Hill)
+  * Add manpage 'shim.1'
+  * Ensure that direct connections are now disabled by default
+    This may be enabled at compile time but it allows shim to leak data
+    outside of a configured proxy. Use with caution!
 Changes in 0.1.0 - 2010-03-28
   * Initial release
