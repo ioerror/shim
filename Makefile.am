@@ -43,5 +43,5 @@ maintainer-clean-local:
 	@find ./ | $(GREP) \~$$ | xargs rm -f
 
 # We should write some documentation
-# man_MANS+= man/shim.1
-# EXTRA_DIST+= $(man_MANS)
+man_MANS+= man/shim.1
+EXTRA_DIST+= $(man_MANS)
