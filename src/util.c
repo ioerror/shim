@@ -292,7 +292,7 @@ format_addr(const struct sockaddr *addr)
 	}
 
 	if (!r)
-		strcpy(buf, "???");
+		strcpy(buf, "???"); // XXX: Is this really a reasonable thing to return?
 	
 	return buf;
 }

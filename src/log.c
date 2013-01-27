@@ -86,7 +86,7 @@ log_msg_va(int lvl, int serr, const char *msg, va_list ap)
 {
 	if (debug) {
 		if (lvl >= min_log_level) {
-			vfprintf(log_file, msg, ap);
+			vfprintf(log_file, msg, ap); // XXX: Is this ever safe?
 			if (serr)
 				fprintf(log_file, ": %s",
 				    socket_error_string(-1));
