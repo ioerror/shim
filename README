@@ -10,7 +10,8 @@ You'll need Libevent 2 or greater!
 How to Build and Install
 -------------------------
 
-1. Install Libevent 2 somewhere if it hasn't been already.
+0. Install Libevent 2 somewhere if it hasn't been already.
+1. ./autogen.sh # if ./configure isn't in your source directory
 2. ./configure
 3. make
 4. make install
@@ -78,4 +79,8 @@ socks proxy
 Where to Report Bugs
 -------------------
 
-Christopher Davis <chrisd@torproject.org>
+  Jacob Appelbaum <jacob@torproject.org>
+
+The original author may also wish to learn about bugs:
+
+  Christopher Davis <chrisd@torproject.org>
