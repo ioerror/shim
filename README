@@ -39,7 +39,7 @@ you can:
 Command Line Arguments
 -----------------------
 
-shim [-l host] [-p port] [-qVv] [socks proxy]
+shim [-l host] [-p port] [-qdVv] [socks proxy]
 
 -l
 	The address to listen on, or "any" to listen on all available
@@ -51,6 +51,8 @@ shim [-l host] [-p port] [-qVv] [socks proxy]
 -q
 	Decrease verbosity. You can specify this option more than once.
 
+-d
+	Daemonize.
 -v
 	Increase verbosity. You can specify this option more than once.
 
