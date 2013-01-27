@@ -1,0 +1,13 @@
+# vim:ft=automake
+
+AUTOMAKE_OPTIONS = foreign 1.7
+
+bin_PROGRAMS += src/shim
+
+src_shim_CFLAGS =  $(AM_CFLAGS) -I$(srcdir)/src/compat $(LIBEVENT_CFLAGS)
+src_shim_SOURCES = src/main.c src/proxy.c src/httpconn.c src/conn.c \
+                 src/headers.c src/log.c src/util.c
+src_shim_LDADD = $(LIBEVENT_LIBS)
+
+noinst_HEADERS += src/conn.h src/headers.h src/httpconn.h src/log.h \
+                 src/proxy.h src/util.h src/netheaders.h src/compat/sys/queue.h
